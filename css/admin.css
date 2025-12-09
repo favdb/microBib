@@ -1,0 +1,555 @@
+/*
+ * Fichier CSS pour la zone d'administration (admin.css)
+ * Simple, compact, lisible et fonctionnel
+ */
+
+/* =================================================================
+   1. BASICS & LAYOUT
+   ================================================================= */
+:root {
+    --color-primary: #3498db;      /* Bleu pour les actions principales */
+    --color-secondary: #2c3e50;    /* Gris foncé pour l'arrière-plan */
+    --color-background: #ecf0f1;   /* Fond clair */
+    --color-text: #34495e;         /* Texte foncé */
+    --color-success: #2ecc71;      /* Vert pour succès */
+    --color-error: #e74c3c;        /* Rouge pour erreur/alerte */
+    --color-warning: #f1c40f;      /* Jaune pour avertissement */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    color: var(--color-secondary);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto; /* Centrer le contenu */
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+/* =================================================================
+   2. NAVIGATION & HEADER
+   ================================================================= */
+header {
+    background-color: var(--color-secondary);
+    color: #fff;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #fff;
+}
+
+header p {
+    margin: 5px 0 0 0;
+    font-size: 0.9em;
+}
+
+header a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+nav {
+    background-color: #34495e;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav li a {
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+nav li a:hover {
+    background-color: var(--color-primary);
+}
+
+
+/* =================================================================
+   3. MESSAGES & BOUTONS
+   ================================================================= */
+.success-message {
+    background-color: #e6f7ee;
+    color: var(--color-success);
+    border: 1px solid var(--color-success);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    background-color: #fcebeb;
+    color: var(--color-error);
+    border: 1px solid var(--color-error);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.button, a.button {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.button:hover, a.button:hover {
+    background-color: #2980b9;
+}
+
+.action-delete {
+    color: var(--color-error);
+    text-decoration: none;
+}
+.action-delete:hover {
+    text-decoration: underline;
+}
+
+.action-return {
+    color: var(--color-success);
+    text-decoration: none;
+}
+.action-return:hover {
+    text-decoration: underline;
+}
+
+/* =================================================================
+   4. FORMULAIRES (RÉPARÉ ET AMÉLIORÉ)
+   ================================================================= */
+label {
+    display: block;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+/* Structure de Formulaire en 2 colonnes (Label / Champ) */
+main form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 3fr; 
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 2px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+/* Supprimer la bordure pour la dernière ligne de formulaire */
+main form .form-row:last-of-type {
+    border-bottom: none;
+    margin-bottom: 20px;
+}
+
+/* Aligner le texte du label à droite (colonne de gauche) pour le rapprocher du champ */
+main form .form-row > label {
+    display: block;
+    margin: 0;
+    padding-right: 10px;
+    text-align: right; 
+}
+
+/* Pour les champs de Description et Couverture, aligner le label en haut */
+.form-row-top-align {
+    align-items: flex-start !important;
+}
+.form-row-top-align > label {
+    padding-top: 5px; /* Petit décalage pour l'alignement visuel */
+}
+
+/* S'assurer que le contenu du champ de saisie (input, div) prend bien la 2ème colonne */
+main form .form-row .input-container {
+    width: 100%;
+}
+
+/* Correction des marges pour les éléments dans le conteneur de droite */
+.input-container label {
+    font-weight: normal; /* Les sous-labels sont moins importants */
+}
+.input-container p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* -- Styles spécifiques pour la Série -- */
+.form-row .serie-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* Le champ Numéro de série est petit et ne grandit pas */
+.form-row .serie-inputs input[id="ser_num"] {
+    width: 8ch !important;
+    flex-shrink: 0;
+}
+/* Le champ Nom de série prend le reste de l'espace */
+.form-row .serie-inputs input[id="ser_name"] {
+    flex-grow: 1;
+}
+.form-row .serie-inputs input[type="text"] {
+    margin-bottom: 0; 
+}
+
+/* -- Gestion de la Couverture -- */
+.cover-management .current-cover-info {
+    margin-bottom: 10px;
+}
+.cover-management input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+}
+.cover-management hr {
+    margin: 10px 0;
+}
+
+/* Ajuster les styles des inputs standard */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+textarea,
+select {
+    width: 100%; 
+    padding: 5px;
+    margin-bottom: 0px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 1em;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Conteneur de formulaire centré et à largeur limitée pour l'esthétisme */
+main form {
+    /* Largeur max pour que les champs ne s'étirent pas à l'infini */
+    max-width: 700px;
+}
+
+.login-container form {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group-inline {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group-inline > div {
+    flex: 1;
+}
+
+/* =================================================================
+   5. TABLEAUX & PAGINATION (Compact)
+   ================================================================= */
+
+.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.table-responsive table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+/* Style des en-têtes (th) */
+.table-responsive th {
+    padding: 5px 15px;
+    background-color: #eaf6ff;
+    font-weight: bold;
+    color: var(--color-secondary);
+    border: none;
+    border-bottom: 2px solid #ddd;
+    line-height: 1.4;
+}
+
+/* Style des cellules de données (td) */
+.table-responsive td {
+    padding: 2px 15px; /* Padding vertical très réduit */
+    border: none;
+    text-align: left;
+    line-height: 1.4;
+}
+
+/* Alternance des couleurs d'arrière-plan (lignes impaires - bleu pastel très clair) */
+.table-responsive tr:nth-child(odd) {
+    background-color: #f7faff;
+}
+
+/* Alternance des couleurs d'arrière-plan (lignes paires - blanc) */
+.table-responsive tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* Effet hover conservé */
+.table-responsive tr:hover {
+    background-color: #e0f0ff;
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 2px;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.pagination a.active {
+    background-color: var(--color-primary);
+    color: #fff;
+    font-weight: bold;
+}
+
+.status-available {
+    color: var(--color-success);
+    font-weight: bold;
+}
+
+.status-loaned {
+    color: var(--color-error);
+    font-weight: bold;
+}
+
+
+/* =================================================================
+   6. DASHBOARD STATS (index.php)
+   ================================================================= */
+.stats-grid {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.stat-box {
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    min-width: 128px;
+    border-bottom: 3px solid var(--color-primary);
+    text-align: center;
+}
+
+.stat-box h3 {
+    margin: 0 0 5px 0;
+    color: var(--color-text);
+    font-size: 1em;
+}
+
+.stat-box p {
+    margin: 0;
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+.small-note {
+    font-size: 0.8em;
+    color: #777;
+    margin-top: -5px;
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+.cover-preview-container {
+    position: relative; /* Point d'ancrage pour l'aperçu */
+    display: inline-block;
+    cursor: help;
+}
+.cover-preview-container .cover-tooltip {
+    visibility: hidden;
+    width: 150px;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 2px;
+
+    position: absolute;
+    z-index: 100; /* Assure que l'image est au-dessus de tout */
+    top: auto;
+    bottom: 100%; /* Positionne au-dessus du conteneur */
+    left: 50%;
+    margin-left: -75px; /* Centre la bulle */
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #ddd;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.cover-preview-container:hover .cover-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+.cover-tooltip img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+/* Style pour rendre le nom de fichier cliquable/survolable */
+.cover-filename-link {
+    color: #3498db;
+    text-decoration: underline dotted;
+}
+
+/* =================================================================
+   8. MODE SELECTOR (index.php)
+   ================================================================= */
+.mode-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espace entre les éléments */
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.mode-selector h3 {
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--color-secondary);
+    margin: 0;
+    flex-shrink: 0; 
+}
+
+/* Style de base pour donner l'aspect de bouton */
+.mode-link {
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: var(--color-primary); /* Couleur du texte */
+    border: 1px solid var(--color-primary); /* Bordure fine de couleur primaire */
+    transition: all 0.2s ease;
+    font-weight: bold;
+    background-color: white; /* Fond blanc par défaut */
+    cursor: pointer;
+}
+
+/* Effet au survol */
+.mode-link:hover {
+    background-color: var(--color-primary);
+    color: white;
+    text-decoration: none;
+}
+
+/* Style du mode actif (Bouton cliqué) */
+.mode-active {
+    background-color: var(--color-primary);
+    color: white !important;
+    border-color: var(--color-primary);
+    /* Empêche de cliquer sur le mode déjà actif */
+    pointer-events: none; 
+    cursor: default;
+}
+
+/* =================================================================
+   7. RESPONSIVENESS (Media Query)
+   ================================================================= */
+@media (max-width: 768px) {
+
+    header {
+        padding: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+    nav li {
+        width: 100%;
+        text-align: center;
+    }
+
+    main {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .form-group-inline {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* Le tableau passera en défilement horizontal grâce à .table-responsive */
+    .stats-grid {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .mode-selector {
+        /* Empile les éléments sur les petits écrans */
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .mode-selector .mode-link, .mode-selector .mode-active {
+        /* Les liens de mode prennent toute la largeur sur mobile pour une meilleure cible de clic */
+        width: 100%; 
+        text-align: center;
+    }
+
+}
+
+.admin-nav .separator {
+    color: #ccc; /* Couleur de séparation */
+    margin: 0 10px;
+}
